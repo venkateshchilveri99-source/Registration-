@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Official Portal</div>
+      <h1>Member Registration</h1>
+      <p>Fill out the required information below to register.</p>
+    </div>
+
+    <div id="alertBox" class="alert hidden"></div>
+
+    <form id="regForm" novalidate>
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="fullName">Full Name <span class="req">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required />
+          <span class="err-msg" id="err-fullName"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile Number <span class="req">*</span></label>
+          <input type="tel" id="mobile" name="mobile" placeholder="10-digit number" maxlength="15" required />
+          <span class="err-msg" id="err-mobile"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required />
+          <span class="err-msg" id="err-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender <span class="req">*</span></label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+          <span class="err-msg" id="err-gender"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age <span class="req">*</span></label>
+          <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 25" required />
+          <span class="err-msg" id="err-age"></span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="address">Address <span class="req">*</span></label>
+          <input type="text" id="address" name="address" placeholder="Street, flat, building" required />
+          <span class="err-msg" id="err-address"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City <span class="req">*</span></label>
+          <input type="text" id="city" name="city" placeholder="e.g. Chicago" required />
+          <span class="err-msg" id="err-city"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="state">State <span class="req">*</span></label>
+          <input type="text" id="state" name="state" placeholder="e.g. Illinois" required />
+          <span class="err-msg" id="err-state"></span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="regDate">Registration Date <span class="req">*</span></label>
+          <input type="date" id="regDate" name="regDate" required />
+          <span class="err-msg" id="err-regDate"></span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="additionalInfo">Additional Information</label>
+          <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Optional comments or notes"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn-primary">
+        <span class="btn-text">Submit Registration</span>
+        <span class="spinner hidden"></span>
+      </button>
+    </form>
+
+    <div id="successCard" class="card-success hidden">
+      <div class="success-icon">✓</div>
+      <h2>Registration Confirmed!</h2>
+      <p>Your details have been saved to the database.</p>
+      <div class="summary-box" id="regSummary"></div>
+      <button id="resetBtn" class="btn-secondary">Register Another Person</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
